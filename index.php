@@ -1,6 +1,7 @@
 <?php 
     include "./model/pdo.php";
     include "./model/sanpham.php";
+    include "./model/comment.php";
     $category = loadall_category();
     $products = loadall_products();
     $bestSeller = loadall_bestseller();
@@ -17,10 +18,11 @@
             case 'detail':
                 if(isset($_GET['idsp']) && $_GET['idsp'] > 0){
                     $sp = loadone_sanpham($_GET['idsp']);
+                    $comments = loadall_comments($_GET['idsp']);
+                    include "./view/detail_product.php";
                 }else {
                     include "./view/home.php";
                 }
-                include "./view/detail_product.php";
                 break;
             case 'cart':
                 include "./view/cart.php";
