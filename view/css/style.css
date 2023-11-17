@@ -2157,8 +2157,7 @@ textarea.form-control {
 }
 
 .yolo {
-    display: flex;
-    align-items: center;
+    width: 150px;
 }
 
 .form-check-inline {

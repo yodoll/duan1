@@ -84,7 +84,7 @@
     <script src="view/mail/contact.js"></script>
 
     <!-- Template Javascript -->
-    <script src="view/js/main.js"></script>
+    <script src="view/js/main1.js"></script>
 </body>
 
 </html>

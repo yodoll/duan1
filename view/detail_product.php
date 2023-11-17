@@ -92,13 +92,15 @@
                 </form>
             </div>
             <div class="d-flex align-items-center mb-4 pt-2">
-                <div class="input-group quantity mr-3" style="width: 130px">
+                <div class="input-group quantity mr-3" style="width: 260px">
                     <div class="input-group-btn">
                         <button class="btn btn-primary btn-minus">
                             <i class="fa fa-minus"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control bg-secondary text-center" value="1" />
+                    <form action="" method="post">
+                         <input type="number" style="width: 150px;" class="form-control bg-secondary text-center" value="1" />
+                    </form>
                     <div class="input-group-btn">
                         <button class="btn btn-primary btn-plus">
                             <i class="fa fa-plus"></i>
