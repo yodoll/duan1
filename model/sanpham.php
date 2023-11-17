@@ -1,11 +1,4 @@
 <?php 
-    // load tất cả danh mục
-    function loadall_category(){
-        $sql = 'SELECT * FROM groupproduct';
-        $result = pdo_query($sql);
-        return $result;
-    }
-
     // load tất cả sản phẩm
     function loadall_products(){
         $sql = 'SELECT * FROM products';
@@ -24,6 +17,12 @@
     function loadone_sanpham($id){
         $sql = "SELECT * FROM products where id = $id";
         $result = pdo_query_one($sql);
+        return $result;
+    }
+
+    function loadall_sanpham($id){
+        $sql = "SELECT * FROM products where id = $id";
+        $result = pdo_query($sql);
         return $result;
     }
 ?>

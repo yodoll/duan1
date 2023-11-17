@@ -2156,6 +2156,11 @@ textarea.form-control {
     margin-bottom: 0;
 }
 
+.yolo {
+    display: flex;
+    align-items: center;
+}
+
 .form-check-inline {
     display: inline-flex;
     align-items: center;
@@ -2515,6 +2520,7 @@ fieldset:disabled a.btn {
     color: #212529;
     background-color: #d19c97;
     border-color: #d19c97;
+    text-decoration: none;
 }
 
 .btn-primary:hover {

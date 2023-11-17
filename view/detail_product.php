@@ -29,7 +29,7 @@
                 </div>
                 <small class="pt-1">(50 Reviews)</small>
             </div>
-            <h3 class="font-weight-semi-bold mb-4"><?= $sp['price'] ?>VNĐ</h3>
+            <h3 class="font-weight-semi-bold mb-4">Price: $<?= $sp['price'] ?></h3>
             <p class="mb-4">
                 🔹 Bảng size Outerity
                 S: Dài 69 Rộng 52.5 | 1m50 - 1m65, 45 - 55Kg
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <button class="btn btn-primary px-3">
-                    <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+                     <a class="btn-primary" style="text-decoration: none;" href="index.php?act=cart"><i class="fa fa-shopping-cart mr-1"></i>Add to cart</a>
                 </button>
             </div>
             <div class="d-flex pt-2">
