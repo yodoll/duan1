@@ -20,6 +20,9 @@
                <input type="password" name="password" required>
                <label>Password</label>
             </div>
+            <?php if(isset($thongbao1)&&$thongbao1!="" ){
+                echo $thongbao1;
+            } ?>
             <div class="content">
                <div class="checkbox">
                   <input type="checkbox" id="remember-me">
@@ -35,11 +38,6 @@
             <div class="signup-link">
                Not a member? <a href="register.php">Signup now</a>
             </div>
-            <?php 
-               if(isset($thongbao1)){
-                  echo $thongbao1;
-               }
-            ?>
          </form>
       </div>
    </body>

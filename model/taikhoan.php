@@ -21,6 +21,16 @@
         pdo_execute($sql);
     }
 
+    function insert_taikhoan($username, $phone, $address, $email, $password){
+        $sql = "INSERT INTO users (name, userName, password, address, phone) values ('$username', '$email', '$password', '$address', '$phone')";
+        pdo_execute($sql);
+    }
+
+    function get_user_by_name($name){
+        $sql = "SELECT * FROM users WHERE userName = '$name'";
+        return pdo_query_one($sql);
+    }
+
     function getUserByUsername($user, $password){
         $sql = "SELECT * FROM users WHERE `userName` = '$user' and `password` = '$password'";
         $result = pdo_query_one($sql);

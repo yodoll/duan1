@@ -190,9 +190,12 @@
                                     <li class="li-menu">
                                         <i style="font-size: 30px;" class='icon bx bx-user'></i>
                                         <ul class="sub-menu">
-                                            <li><a href="">Xin chào</a></li>
-                                            <li><a href="">Vào trang quản trị</a></li>
-                                            <li><a href="index.php?act=dangxuat">Đăng xuất</a></li>
+                                            <li><a style="text-decoration: none;" href="">Xin chào, <?= $_SESSION['user']['name'] ?></a></li>
+                                            <li><a style="text-decoration: none;" href="">Trang cá nhân</a></li>
+                                            <?php if($_SESSION['user']['is_Admin'] == 1){ ?>
+                                                <li><a style="text-decoration: none;" href="/eshopper-shoppingcart/admin/index.php">Vào trang quản trị</a></li>
+                                            <?php }?>
+                                            <li><a style="text-decoration: none;" href="index.php?act=dangxuat">Đăng xuất</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -203,7 +206,6 @@
                                 <a href="./view/auth/register.php" class="nav-item nav-link">Register</a>
                             </div>
                         <?php } ?>
-
                     </div>
                 </nav>
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">

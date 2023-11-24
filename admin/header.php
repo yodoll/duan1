@@ -49,9 +49,11 @@
     </div>
     <hr>
     <ul class="app-menu">
-      <li><a class="app-menu__item active" href="index.php?act=list-thongke"><i class='app-menu__icon bx bx-tachometer'></i><span
+    <li><a class="app-menu__item" href="../index.php"><i class='app-menu__icon bx bx-home-alt'></i><span
+            class="app-menu__label">HOME</span></a></li>
+      <li><a class="app-menu__item " href="index.php?act=list-thongke"><i class='app-menu__icon bx bx-tachometer'></i><span
             class="app-menu__label">Bảng thống kê</span></a></li>
-      <li><a class="app-menu__item haha" href="index.php?act=list-user"><i class='app-menu__icon bx bx-user'></i>
+      <li><a class="app-menu__item " href="index.php?act=list-user"><i class='app-menu__icon bx bx-user'></i>
           <span class="app-menu__label">Quản lý người dùng</span></a></li>
       <li><a class="app-menu__item" href="index.php?act=list-comment"><i class='app-menu__icon bx bx-comment'></i><span
             class="app-menu__label">Quản lý bình luận</span></a></li>
