@@ -31,8 +31,8 @@
                   <td><?= $value['product'] ?></td>
                   <td><?= $value['content'] ?></td>
                   <td><?= $value['updated_at'] ?></td>
-                  <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button>
+                  <td>
+                    <a onclick="return confirm('bạn chắc chắn muốn xóa?')" href="index.php?act=xoabl&id=<?= $value['id'] ?>"> <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button></a> 
                   </td>
                 </tr>
               <?php endforeach; ?>

@@ -6,6 +6,7 @@
     include "./model/sanpham.php";
     include "./model/comment.php";
     include "./model/danhmuc.php";
+    include "./model/taikhoan.php";
     $category = loadall_category();
     $products = loadall_products();
     $bestSeller = loadall_bestseller();
@@ -68,6 +69,29 @@
                 }
                 include "./view/cart.php";
                  break;
+
+            case 'dangnhap':
+                if(isset($_POST['dangnhap'])  && ($_POST['dangnhap'] != "")){
+                    $user = $_POST['user'];
+                    $password = $_POST['password'];
+                    $userDb = getUserByUsername($user, $password);
+                    if (is_array($userDb)) {
+                        $_SESSION['user'] = $userDb;
+                        // var_dump($_SESSION['user']);
+                        // header("location: index.php");
+                        // exit();
+                    }else {
+                        $thongbao1 = "tài khoản không tồn tại vui lòng kiểm tra hoặc đăng ký!";
+                    }
+                }
+                include "./view/home.php";
+                break;
+            
+            case 'dangxuat':
+                dangxuat();
+                var_dump($_SESSION);
+                include "./view/home.php";
+                break;
 
             case 'checkout':
                 include "./view/checkout.php";

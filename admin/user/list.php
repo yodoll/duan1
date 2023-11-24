@@ -18,6 +18,7 @@
                 <th>Số điện thoại</th>
                 <th>Email</th>
                 <th>Địa chỉ</th>
+                <th>Vai trò</th>
                 <th>Tính năng</th>
               </tr>
             </thead>
@@ -30,9 +31,11 @@
                 <td><?= $value['phone'] ?></td>
                 <td><?= $value['userName'] ?></td>
                 <td><?= $value['address'] ?></td>
+                <td><?= $value['is_Admin'] ?></td>
 
-                <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                  <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button>
+                <td>
+                <a onclick="return confirm('bạn chắc chắn muốn xóa?')" href="index.php?act=delete-user&id=<?= $value['id'] ?>"> <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button></a>
+                    <a href="index.php?act=capnhat-user&id=<?= $value['id'] ?>"><button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button></a>
                 </td>
               </tr>
               <?php endforeach; ?>

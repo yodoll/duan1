@@ -9,13 +9,6 @@
     <div class="col-md-12">
       <div class="tile">
         <div class="tile-body">
-          <div class="row element-button">
-            <div class="col-sm-2">
-
-              <a class="btn btn-add btn-sm" href="form-add-don-hang.html" title="Thêm"><i class="fas fa-plus"></i>
-                Tạo mới đơn hàng</a>
-            </div>
-          </div>
           <table class="table table-hover table-bordered" id="sampleTable">
             <thead>
               <tr>
@@ -35,8 +28,9 @@
                   <td><?= $value['name'] ?></td>
                   <td><?= $value['totalMoney'] ?></td>
                   <td><span class="badge bg-success"><?= $value['status'] ?></span></td>
-                  <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button>
+                  <td>
+                    <a href="index.php?act=detail-bill&id=<?= $value['id'] ?>"><button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i>Chi Tiết</button></a>
+                    <a onclick="return confirm('bạn chắc chắn muốn xóa?')" href="index.php?act=xoa-donhang&id=<?= $value['id'] ?>"> <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button></a> 
                   </td>
                 </tr>
               <?php endforeach; ?>

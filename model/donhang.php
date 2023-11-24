@@ -5,4 +5,9 @@
         $result = pdo_query($sql);
         return $result;
     }
+
+    function delete_donhang($id){
+        $sql = "DELETE FROM orders WHERE id = '$id'";
+        pdo_execute($sql);
+    }
 ?>

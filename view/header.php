@@ -6,16 +6,17 @@
     <title>EShopper - Bootstrap Shop Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">                                                                     
+    <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
     <link href="view/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
@@ -23,6 +24,53 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="view/css/style.css" rel="stylesheet">
+    <!-- css -->
+    <style>
+        .navbar-nav .menu {
+            list-style-type: none;
+        }
+
+        .navbar-nav .li-menu {
+            position: relative;
+        }
+
+        .navbar-nav .li-menu:hover .sub-menu {
+            display: block;
+        }
+
+        .navbar-nav .sub-menu {
+            position: absolute;
+            z-index: 999;
+            width: 180px;
+            top: 40px;
+            left: -120px;
+            background-color: #f5f5f5;
+            padding: 0;
+            display: none;
+            border-radius: 6px;
+            list-style-type: none;
+        }
+
+        .navbar-nav .sub-menu li {
+            padding: 10px 10px;
+            color: #000;
+        }
+
+        .navbar-nav .sub-menu li:hover {
+            background-color: #ccc;
+            border-radius: 6px;
+            color: #fff;
+        }
+
+        .navbar-nav .sub-menu::after {
+            content: "";
+            top: -15px;
+            left: 8px;
+            position: absolute;
+            width: 100%;
+            height: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -111,7 +159,7 @@
                         </div>
                         <a href="" class="nav-item nav-link">BOTTOMS</a>
                         <a href="" class="nav-item nav-link">ACCESSORIES</a>
-                       
+
                     </div>
                 </nav>
             </div>
@@ -136,10 +184,26 @@
                             </div>
                             <a href="index.php?act=contact" class="nav-item nav-link">Contact</a>
                         </div>
-                        <div class="navbar-nav ml-auto py-0">
-                            <a href="./login.html" class="nav-item nav-link">Login</a>
-                            <a href="./login.html" class="nav-item nav-link">Register</a>
-                        </div>
+                        <?php if (isset($_SESSION['user'])) { ?>
+                            <div class="navbar-nav ml-auto py-0">
+                                <ul class="menu">
+                                    <li class="li-menu">
+                                        <i style="font-size: 30px;" class='icon bx bx-user'></i>
+                                        <ul class="sub-menu">
+                                            <li><a href="">Xin chào</a></li>
+                                            <li><a href="">Vào trang quản trị</a></li>
+                                            <li><a href="index.php?act=dangxuat">Đăng xuất</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php } else { ?>
+                            <div class="navbar-nav ml-auto py-0">
+                                <a href="./view/auth/login.php" class="nav-item nav-link">Login</a>
+                                <a href="./view/auth/register.php" class="nav-item nav-link">Register</a>
+                            </div>
+                        <?php } ?>
+
                     </div>
                 </nav>
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
@@ -190,4 +254,3 @@
         </div>
     </div>
     <!-- Navbar End -->
-                

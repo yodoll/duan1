@@ -16,4 +16,9 @@
         $result = pdo_query($sql);
         return $result;
     }
+
+    function delete_comments($id){
+        $sql = "DELETE FROM comments WHERE id = '$id'";
+        pdo_execute($sql);
+    }
 ?>

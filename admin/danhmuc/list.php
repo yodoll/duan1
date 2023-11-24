@@ -12,7 +12,7 @@
                     <div class="row element-button">
                         <div class="col-sm-2">
 
-                            <a class="btn btn-add btn-sm" href="form-add-san-pham.html" title="Thêm"><i class="fas fa-plus"></i>
+                            <a class="btn btn-add btn-sm" href="index.php?act=adddm" title="Thêm"><i class="fas fa-plus"></i>
                                 Tạo mới danh mục</a>
                         </div>
                         <div class="col-sm-2">
@@ -36,10 +36,9 @@
                                     <td><?= $value['id'] ?></td>
                                     <td><?= $value['name'] ?></td>
                                     <td><img src="<?= $value['image'] ?>" width="50px" height="50px"></td>
-                                    <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
+                                    <td>
+                                        <a onclick="return confirm('bạn chắc chắn muốn xóa?')" href="index.php?act=xoadm&id=<?= $value['id'] ?>"> <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button></a>  
+                                        <a href="index.php?act=suadm&id=<?= $value['id'] ?>"><button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
