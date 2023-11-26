@@ -22,7 +22,6 @@
           <table class="table table-hover table-bordered" id="sampleTable">
             <thead>
               <tr>
-                <th width="10"><input type="checkbox" id="all"></th>
                 <th>Mã sản phẩm</th>
                 <th>Tên sản phẩm</th>
                 <th>Ảnh</th>
@@ -35,7 +34,6 @@
             <tbody>
               <?php foreach ($sanpham as $value) : ?>
                 <tr>
-                  <td width="10"><input type="checkbox" name="check1" value="1"></td>
                   <td><?= $value['id'] ?></td>
                   <td><?= $value['name'] ?></td>
                   <td><img src="../view/img/<?= $value['image'] ?>" alt="" width="50px" height="50px"></td>

@@ -12,7 +12,6 @@
           <table class="table table-hover table-bordered" id="sampleTable">
             <thead>
               <tr>
-                <th width="10"><input type="checkbox" id="all"></th>
                 <th>ID đơn hàng</th>
                 <th>Khách hàng</th>
                 <th>Tổng tiền</th>
@@ -23,7 +22,6 @@
             <tbody>
               <?php foreach ($donhang as $value) : ?>
                 <tr>
-                  <td width="10"><input type="checkbox" name="check1" value="1"></td>
                   <td><?= $value['id'] ?></td>
                   <td><?= $value['name'] ?></td>
                   <td><?= $value['totalMoney'] ?></td>

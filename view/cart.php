@@ -5,6 +5,7 @@
              <table class="table table-bordered text-center mb-0">
                  <thead class="bg-secondary text-dark">
                      <tr>
+                         <th>STT</th>
                          <th>Products</th>
                          <th>Price</th>
                          <th>Quantity</th>
@@ -14,23 +15,26 @@
                  </thead>
                  <tbody class="align-middle">
                      <?php
-                        $i = 1;
+                        $i = 0;
+                        $tong=0;
                         if (isset($_SESSION['giohang']) && sizeof($_SESSION['giohang']) > 0) {
                             foreach ($_SESSION['giohang'] as $value) {
-                                $total = $value['3'] * $value['4'];
+                                $total = floatval($value['3']) * floatval($value['4']);
+                                $tong += $total;
                                 echo '<tr>
+                                    <td class="align-middle">'. ($i + 1) .'</td>
                                     <td class="align-middle">
-                                        <img src="view/img/'. $value['2'] .'" alt="" style="width: 50px" />'. $value['1'] . '
+                                        <img src="view/img/' . $value['2'] . '" alt="" style="width: 50px" />' . $value['1'] . '
                                     </td>
-                                    <td class="align-middle">$'. $value['3'] .'</td>
+                                    <td class="align-middle">$' . $value['3'] . '</td>
                                     <td class="align-middle">
                                         <div class="input-group quantity mx-auto" style="width: 100px">
-                                            <input type="text" class="form-control form-control-sm bg-secondary text-center" value="'. $value['4'] .'" />
+                                            <input type="text" class="form-control form-control-sm bg-secondary text-center" value="' . $value['4'] . '" />
                                         </div>
                                     </td>
-                                    <td class="align-middle">$'. $total .'</td>
+                                    <td class="align-middle">$' . $total . '</td>
                                     <td class="align-middle">
-                                        <button class="btn btn-sm btn-primary"><a style="color: white; text-decoration: none;" href="index.php?act=deleteCart">Xóa</a></button>
+                                        <button class="btn btn-sm btn-primary"><a style="color: white; text-decoration: none;" href="index.php?act=deleteCart&i='. $i .'">Xóa</a></button>
                                     </td>
                                 </tr>';
                                 $i++;
@@ -56,7 +60,7 @@
                  <div class="card-body">
                      <div class="d-flex justify-content-between mb-3 pt-1">
                          <h6 class="font-weight-medium">Subtotal</h6>
-                         <h6 class="font-weight-medium">$150</h6>
+                         <h6 class="font-weight-medium"><?= $tong ?></h6>
                      </div>
                      <div class="d-flex justify-content-between">
                          <h6 class="font-weight-medium">Shipping</h6>
@@ -66,9 +70,9 @@
                  <div class="card-footer border-secondary bg-transparent">
                      <div class="d-flex justify-content-between mt-2">
                          <h5 class="font-weight-bold">Total</h5>
-                         <h5 class="font-weight-bold">$160</h5>
+                         <h5 class="font-weight-bold">$<?= ($tong+10) ?></h5>
                      </div>
-                     <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                     <a style="text-decoration: none;" href=""><button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button></a>
                  </div>
              </div>
          </div>

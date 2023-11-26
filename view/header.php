@@ -108,7 +108,7 @@
         </div>
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a href="" class="text-decoration-none">
+                <a href="index.php" class="text-decoration-none">
                     <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Randy</span>Shop</h1>
                 </a>
             </div>
@@ -116,7 +116,7 @@
                 <form action="">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Tìm kiếm ...">
-                        <div class="input-group-append">
+                        <div style="cursor: pointer;" class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
                             </span>
@@ -129,9 +129,21 @@
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
-                <a href="" class="btn border">
+                <a href="index.php?act=cart" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span class="badge">
+                        <?php
+                        // Kiểm tra xem session giỏ hàng đã tồn tại và không rỗng
+                        if (isset($_SESSION['giohang']) && !empty($_SESSION['giohang'])) {
+                            // Tính tổng số lượng sản phẩm trong giỏ hàng
+                            $totalItems = array_sum(array_column($_SESSION['giohang'], 4));
+                            echo $totalItems;
+                        } else {
+                            // Nếu giỏ hàng trống, hiển thị 0
+                            echo '0';
+                        }
+                        ?>
+                    </span>
                 </a>
             </div>
         </div>
@@ -152,14 +164,19 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown">TOP <i class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                <a href="" class="dropdown-item">TEE</a>
-                                <a href="" class="dropdown-item">POLO</a>
-                                <a href="" class="dropdown-item">HOODIE & SWEATER</a>
+                                <a href="index.php?act=category&iddm=1" class="dropdown-item">TEE</a>
+                                <a href="index.php?act=category&iddm=4" class="dropdown-item">POLO</a>
+                                <a href="index.php?act=category&iddm=3" class="dropdown-item">HOODIE & SWEATER</a>
+                                <a href="index.php?act=category&iddm=6" class="dropdown-item">ÁO SƠ MI</a>
                             </div>
                         </div>
-                        <a href="" class="nav-item nav-link">BOTTOMS</a>
-                        <a href="" class="nav-item nav-link">ACCESSORIES</a>
-
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">BOTTOMS<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a href="index.php?act=category&iddm=2" class="dropdown-item">SHORT</a>
+                                <a href="index.php?act=category&iddm=5" class="dropdown-item">QUẦN JEAN</a>
+                            </div>
+                        </div>
                     </div>
                 </nav>
             </div>
@@ -173,8 +190,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.php" class="nav-item nav-link active">Home</a>
-                            <a href="index.php?act=category" class="nav-item nav-link">List</a>
+                            <a href="index.php" class="nav-item nav-link">Home</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
@@ -192,9 +208,9 @@
                                         <ul class="sub-menu">
                                             <li><a style="text-decoration: none;" href="">Xin chào, <?= $_SESSION['user']['name'] ?></a></li>
                                             <li><a style="text-decoration: none;" href="">Trang cá nhân</a></li>
-                                            <?php if($_SESSION['user']['is_Admin'] == 1){ ?>
+                                            <?php if ($_SESSION['user']['is_Admin'] == 1) { ?>
                                                 <li><a style="text-decoration: none;" href="/eshopper-shoppingcart/admin/index.php">Vào trang quản trị</a></li>
-                                            <?php }?>
+                                            <?php } ?>
                                             <li><a style="text-decoration: none;" href="index.php?act=dangxuat">Đăng xuất</a></li>
                                         </ul>
                                     </li>

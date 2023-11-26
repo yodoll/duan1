@@ -47,4 +47,9 @@
         $sql = "DELETE FROM products WHERE id = '$id'";
         pdo_execute($sql);
     }
+
+    function delete_cart($id){
+        $sql = "DELETE FROM products WHERE id = '$id'";
+        pdo_execute($sql);
+    }
 ?>

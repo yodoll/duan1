@@ -22,7 +22,6 @@
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                             <tr>
-                                <th width="10"><input type="checkbox" id="all"></th>
                                 <th>Mã loại</th>
                                 <th>Tên loại</th>
                                 <th>Ảnh</th>
@@ -32,7 +31,6 @@
                         <tbody>
                             <?php foreach ($danhmuc as $value) : ?>
                                 <tr>
-                                    <td width="10"><input type="checkbox" name="check1" value="1"></td>
                                     <td><?= $value['id'] ?></td>
                                     <td><?= $value['name'] ?></td>
                                     <td><img src="<?= $value['image'] ?>" width="50px" height="50px"></td>

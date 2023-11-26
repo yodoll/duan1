@@ -13,7 +13,6 @@
           <table class="table table-hover table-bordered" id="sampleTable">
             <thead>
               <tr>
-                <th width="10"><input type="checkbox" id="all"></th>
                 <th>ID</th>
                 <th>Tài khoản</th>
                 <th>Tên sản phẩm</th>
@@ -25,7 +24,6 @@
             <tbody>
               <?php foreach ($comment as $value) : ?>
                 <tr>
-                  <td width="10"><input type="checkbox" name="check1" value="1"></td>
                   <td><?= $value['id'] ?></td>
                   <td><?= $value['name'] ?></td>
                   <td><?= $value['product'] ?></td>

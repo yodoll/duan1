@@ -36,13 +36,20 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             break;
         case 'cart':
+            include "./view/cart.php";
+            break;
+        case 'addcart':
             // Lấy dữ liệu từ form để lưu giỏ hàng
             if (isset($_POST['addtocart']) && ($_POST['addtocart'])) {
                 $id = $_POST['id'];
                 $tensp = $_POST['tensp'];
                 $image = $_POST['image'];
                 $price = $_POST['gia'];
-                $amount = 1;
+                if(isset($_POST['sl']) && ($_POST['sl']) > 0){
+                    $amount = $_POST['sl'];
+                }else {
+                    $amount = 1;
+                }
                 $fg = 0; // nếu $fg = 0 thì số lượng không đổi
                 $i = 0;
                 foreach ($_SESSION['giohang'] as $value) {
@@ -59,15 +66,23 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $item = array($id, $tensp, $image, $price, $amount);
                     $_SESSION['giohang'][] = $item;
                 }
+                header("location: index.php?act=cart");
             }
-            include './view/cart.php';
             break;
 
         case 'deleteCart':
-            if (isset($_SESSION['giohang'])) {
-                unset($_SESSION['giohang']);
+            if(isset($_GET['i']) && ($_GET['i']) > 0){
+                if(isset($_SESSION['giohang'])){
+                    array_splice($_SESSION['giohang'], $_GET['i'], 1);
+                }
+            }else {
+                if(isset($_SESSION['giohang'])) unset($_SESSION['giohang']);
             }
-            include "./view/cart.php";
+            if(isset($_SESSION['giohang']) && ($_SESSION['giohang']) > 0){
+                header("location: index.php?act=cart");
+            }else {
+                header("location: index.php");
+            }
             break;
 
         case 'dangky':

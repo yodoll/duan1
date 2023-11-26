@@ -93,23 +93,18 @@
             </div>
             <div class="d-flex align-items-center mb-4 pt-2">
                 <div class="input-group quantity mr-3" style="width: 260px">
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary btn-minus">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                    <form action="" method="post">
-                         <input type="number" style="width: 150px;" class="form-control bg-secondary text-center" value="1" />
+
+                    <form class="d-flex align-items-center" action="index.php?act=addcart" method="post">
+                        <label style="width: 160px;" for="">Số lượng:</label>
+                        <input type="number"  class="form-control bg-secondary text-center" min="1" max="50" value="1" required="" name="sl">
+                        <input type="hidden" value="<?= $sp['id'] ?>" name="id">
+                        <input type="hidden" value="<?= $sp['name'] ?>" name="tensp">
+                        <input type="hidden" value="<?= $sp['image'] ?>" name="image">
+                        <input type="hidden" value="<?= $sp['price'] ?>" name="gia">
+                        <input style="width: 300px; margin-left: 15px;" type="submit" value="Đặt Hàng" name="addtocart" class="btn btn-primary px-3">
                     </form>
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary btn-plus">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                    </div>
+
                 </div>
-                <button class="btn btn-primary px-3">
-                     <a class="btn-primary" style="text-decoration: none;" href="index.php?act=cart"><i class="fa fa-shopping-cart mr-1"></i>Add to cart</a>
-                </button>
             </div>
             <div class="d-flex pt-2">
                 <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
@@ -151,25 +146,25 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h4 class="mb-4">1 review for <?= $sp['name'] ?></h4>
-                            <?php foreach($comments as $comment): ?>
+                            <?php foreach ($comments as $comment) : ?>
                                 <div class="media mb-4">
-                                <img src="view/img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px" />
-                                <div class="media-body">
-                                    <h6>
-                                        <?= $comment['name'] ?><small> - <i> <?= $comment['updated_at'] ?></i></small>
-                                    </h6>
-                                    <div class="text-primary mb-2">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <i class="far fa-star"></i>
+                                    <img src="view/img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px" />
+                                    <div class="media-body">
+                                        <h6>
+                                            <?= $comment['name'] ?><small> - <i> <?= $comment['updated_at'] ?></i></small>
+                                        </h6>
+                                        <div class="text-primary mb-2">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <p>
+                                            <?= $comment['content'] ?>
+                                        </p>
                                     </div>
-                                    <p>
-                                        <?= $comment['content'] ?>
-                                    </p>
                                 </div>
-                            </div>
                             <?php endforeach; ?>
                         </div>
                         <div class="col-md-6">

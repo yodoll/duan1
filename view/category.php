@@ -19,39 +19,13 @@
         <div class="col-lg-3 col-md-12">
             <!-- Price Start -->
             <div class="border-bottom mb-4 pb-4">
-                <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
-                <form>
+                <h5 class="font-weight-semi-bold mb-4">Tất cả danh mục</h5>
+                <?php foreach ($category as $value) : ?>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="price-all">
-                        <label class="custom-control-label" for="price-all">All Price</label>
-                        <span class="badge border font-weight-normal">1000</span>
+                        <a style="text-decoration: none;" href="index.php?act=category&iddm=<?= $value['id'] ?>" for="price-1"><?= $value['name'] ?></a>
+                        <span class="badge border font-weight-normal">Product</span>
                     </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-1">
-                        <label class="custom-control-label" for="price-1">$0 - $100</label>
-                        <span class="badge border font-weight-normal">150</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-2">
-                        <label class="custom-control-label" for="price-2">$100 - $200</label>
-                        <span class="badge border font-weight-normal">295</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-3">
-                        <label class="custom-control-label" for="price-3">$200 - $300</label>
-                        <span class="badge border font-weight-normal">246</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-4">
-                        <label class="custom-control-label" for="price-4">$300 - $400</label>
-                        <span class="badge border font-weight-normal">145</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="price-5">
-                        <label class="custom-control-label" for="price-5">$400 - $500</label>
-                        <span class="badge border font-weight-normal">168</span>
-                    </div>
-                </form>
+                <?php endforeach; ?>
             </div>
             <!-- Price End -->
 
@@ -164,20 +138,29 @@
                 <?php foreach ($sp_cungloai as $value) : ?>
                     <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                         <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="./view/img/<?= $value['image'] ?>" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3"><?= $value['name']?></h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6><strong>Price: $</strong><?= $value['price'] ?></h6>
-                                    <h6 class="text-muted ml-2"><del>$<?= $value['price'] ?></del></h6>
+                            <form action="index.php?act=addcart" method="post">
+                                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <a href="index.php?act=detail&idsp=<?= $value['id'] ?>"><img class="img-fluid w-100" src="./view/img/<?= $value['image'] ?>" alt=""></a>
                                 </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="index.php?act=detail&idsp=<?= $value['id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3"><?= $value['name'] ?></h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6><strong>Price: $</strong><?= $value['price'] ?></h6>
+                                        <h6 class="text-muted ml-2"><del>$<?= $value['price'] ?></del></h6>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="index.php?act=detail&idsp=<?= $value['id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <div>
+                                        <i class="fas fa-shopping-cart text-primary"></i>
+                                        <input class=" btn text-dark p-0" style="background-color: #fff; border: none; font-size: 0.9rem; padding: 0; cursor: pointer;" type="submit" value="Add To Cart" name="addtocart">
+                                    </div>
+                                </div>
+                                <input type="hidden" value="<?= $value['id'] ?>" name="id">
+                                <input type="hidden" value="<?= $value['name'] ?>" name="tensp">
+                                <input type="hidden" value="<?= $value['image'] ?>" name="image">
+                                <input type="hidden" value="<?= $value['price'] ?>" name="gia">
+                            </form>
                         </div>
                     </div>
                 <?php endforeach; ?>
