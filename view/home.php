@@ -32,7 +32,7 @@
 
 <!-- Categories Start -->
 <div class="container-fluid pt-5">
-    <h2 id="category" class="text-center m-4">Product category</h2>
+    <h2 id="category" class="text-center m-4">Danh Mục Sản Phẩm</h2>
     <div class="row px-xl-5 pb-3">
         <?php foreach ($category as $value) : ?>
             <div class="col-lg-4 col-md-6 pb-1">
@@ -53,7 +53,7 @@
 <!-- Products Start -->
 <div class="container-fluid pt-5">
     <div class="text-center mb-4">
-        <h2 class="section-title px-5"><span class="px-2 ">Product Best Seller</span></h2>
+        <h2 class="section-title px-5"><span class="px-2 ">Sản Phẩm Bán Chạy</span></h2>
     </div>
     <div class="row px-xl-5 pb-3">
         <?php foreach ($bestSeller as $value1) : ?>
@@ -64,17 +64,17 @@
                             <a href="index.php?act=detail&idsp=<?= $value1['id'] ?>"><img class="img-fluid w-100" src="./view/img/<?= $value1['image'] ?>" alt=""></a>
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3"><?= $value1['name'] ?></h6>
-                            <div class="d-flex justify-content-center">
-                                <h6><strong>Price:</strong>$<?= $value1['price'] ?></h6>
-                                <h6 class="text-muted ml-2"><del>$<?= $value1['price'] ?></del></h6>
+                            <h6 style="font-size: 20px;" class="font text-truncate mb-3"><?= $value1['name'] ?></h6>
+                            <div class="d-flex justify-content-around">
+                                <h6 style="color: #d19c97;"><strong>Giá: </strong></strong><?= number_format($value1['price']) ?>VNĐ</h6>
+                                <h6 style="font-size: 14px;" class="text-muted ml-2">Đã bán: <?= $value1['quantity_sold'] ?></h6>
                             </div>
                         </div>
                         <div style="cursor: pointer;" class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="index.php?act=detail&idsp=<?= $value1['id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                            <a href="index.php?act=detail&idsp=<?= $value1['id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Chi tiết</a>
                             <div>
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <input class=" btn text-dark p-0" style="background-color: #fff; border: none; font-size: 0.9rem; padding: 0; cursor: pointer;" type="submit" value="Add To Cart" name="addtocart">
+                                <input class=" btn text-dark p-0" style="background-color: #fff; border: none; font-size: 0.9rem; padding: 0; cursor: pointer;" type="submit" value="Thêm giỏ hàng" name="addtocart">
                             </div>
                         </div>
                         <input type="hidden" value="<?= $value1['id'] ?>" name="id">
@@ -91,31 +91,13 @@
 
 
 <!-- Subscribe Start -->
-<div class="container-fluid bg-secondary my-5">
-    <div class="row justify-content-md-center py-5 px-xl-5">
-        <div class="col-md-6 col-12 py-5">
-            <div class="text-center mb-2 pb-2">
-                <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">Stay Updated</span></h2>
-                <p>Amet lorem at rebum amet dolores. Elitr lorem dolor sed amet diam labore at justo ipsum eirmod duo labore labore.</p>
-            </div>
-            <form action="">
-                <div class="input-group">
-                    <input type="text" class="form-control border-white p-4" placeholder="Email Goes Here">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary px-4">Subscribe</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 <!-- Subscribe End -->
 
 
 <!-- Products Start -->
 <div class="container-fluid pt-5">
     <div class="text-center mb-4">
-        <h2 class="section-title px-5"><span class="px-2">Just Arrived</span></h2>
+        <h2 class="section-title px-5"><span class="px-2">Sản Phẩm Mới</span></h2>
     </div>
     <div class="row px-xl-5 pb-3">
         <?php foreach ($products as $value2) : ?>
@@ -126,17 +108,17 @@
                             <a href="index.php?act=detail&idsp=<?= $value2['id'] ?>"><img class="img-fluid w-100" src="./view/img/<?= $value2['image'] ?>" alt=""></a>
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3"><?= $value2['name'] ?></h6>
-                            <div class="d-flex justify-content-center">
-                                <h6><strong>Price:</strong> $<?= $value2['price'] ?></h6>
-                                <h6 class="text-muted ml-2">$<del>123.000</del></h6>
+                            <h6 style="font-size: 20px;" class="font text-truncate mb-3"><?= $value2['name'] ?></h6>
+                            <div class="d-flex justify-content-around">
+                                <h6 style="color: #d19c97;"><strong>Giá: </strong><?= number_format($value2['price']) ?>VNĐ</h6>
+                                <h6 style="font-size: 14px;" class="text-muted ml-2">Đã bán: <?= $value2['quantity_sold'] ?></h6>
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="index.php?act=detail&idsp=<?= $value2['id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                            <a href="index.php?act=detail&idsp=<?= $value2['id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Chi tiết</a>
                             <div>
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <input class=" btn text-dark p-0" style="background-color: #fff; border: none; font-size: 0.9rem; padding: 0; cursor: pointer;" type="submit" value="Add To Cart" name="addtocart">
+                                <input class=" btn text-dark p-0" style="background-color: #fff; border: none; font-size: 0.9rem; padding: 0; cursor: pointer;" type="submit" value="Thêm giỏ hàng" name="addtocart">
                             </div>
                         </div>
                         <input type="hidden" value="<?= $value2['id'] ?>" name="id">

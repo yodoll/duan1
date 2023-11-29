@@ -1,7 +1,7 @@
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Our Shop</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Danh sách</h1>
         <div class="d-inline-flex">
             <p class="m-0"><a href="">Home</a></p>
             <p class="m-0 px-2">-</p>
@@ -112,27 +112,12 @@
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
                 <div class="col-12 pb-1">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div style="background-color: #fecaca; height: 50px;" class="d-flex align-items-center justify-content-between mb-4">
                         <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search by name">
-                                <div class="input-group-append">
-                                    <span class="input-group-text bg-transparent text-primary">
-                                        <i class="fa fa-search"></i>
-                                    </span>
-                                </div>
+                            <div style="padding-left: 15px;">Sắp xếp theo: <span style="cursor: pointer; padding: 5px 10px; background-color: #ef4444; color: #fff; border-radius: 5px; margin-left: 5px;">Mới nhất</span>
+                                <span style=" margin: 0 15px;">Bán chạy nhất</span>
                             </div>
                         </form>
-                        <div class="dropdown ml-4">
-                            <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Sort by
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                <a class="dropdown-item" href="#">Latest</a>
-                                <a class="dropdown-item" href="#">Popularity</a>
-                                <a class="dropdown-item" href="#">Best Rating</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <?php foreach ($sp_cungloai as $value) : ?>
@@ -143,17 +128,17 @@
                                     <a href="index.php?act=detail&idsp=<?= $value['id'] ?>"><img class="img-fluid w-100" src="./view/img/<?= $value['image'] ?>" alt=""></a>
                                 </div>
                                 <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                    <h6 class="text-truncate mb-3"><?= $value['name'] ?></h6>
-                                    <div class="d-flex justify-content-center">
-                                        <h6><strong>Price: $</strong><?= $value['price'] ?></h6>
-                                        <h6 class="text-muted ml-2"><del>$<?= $value['price'] ?></del></h6>
+                                    <h6 style="font-size: 20px;" class="font text-truncate mb-3"><?= $value['name'] ?></h6>
+                                    <div class="d-flex justify-content-around">
+                                        <h6 style="color: #d19c97;"><strong>Giá: </strong><?= number_format($value['price']) ?>VNĐ</h6>
+                                        <h6 style="font-size: 14px;" class="text-muted ml-2">Đã bán: <?= $value['quantity_sold'] ?></h6>
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex justify-content-between bg-light border">
-                                    <a href="index.php?act=detail&idsp=<?= $value['id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <a href="index.php?act=detail&idsp=<?= $value['id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Chi tiết</a>
                                     <div>
                                         <i class="fas fa-shopping-cart text-primary"></i>
-                                        <input class=" btn text-dark p-0" style="background-color: #fff; border: none; font-size: 0.9rem; padding: 0; cursor: pointer;" type="submit" value="Add To Cart" name="addtocart">
+                                        <input class=" btn text-dark p-0" style="background-color: #fff; border: none; font-size: 0.9rem; padding: 0; cursor: pointer;" type="submit" value="Thêm giỏ hàng" name="addtocart">
                                     </div>
                                 </div>
                                 <input type="hidden" value="<?= $value['id'] ?>" name="id">

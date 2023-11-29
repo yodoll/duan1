@@ -70,6 +70,11 @@
             width: 100%;
             height: 20px;
         }
+
+        .font:hover {
+            color: #d19c97;
+            cursor: default;
+        }
     </style>
 </head>
 
@@ -136,7 +141,7 @@
                         // Kiểm tra xem session giỏ hàng đã tồn tại và không rỗng
                         if (isset($_SESSION['giohang']) && !empty($_SESSION['giohang'])) {
                             // Tính tổng số lượng sản phẩm trong giỏ hàng
-                            $totalItems = array_sum(array_column($_SESSION['giohang'], 4));
+                            $totalItems = sizeof($_SESSION['giohang'] );
                             echo $totalItems;
                         } else {
                             // Nếu giỏ hàng trống, hiển thị 0

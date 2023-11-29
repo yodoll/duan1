@@ -41,4 +41,10 @@
         // Xóa thông tin người dùng khỏi session
         unset($_SESSION['user']);
     }
+
+    function count_comment($id){
+        $sql= "SELECT COUNT(*) FROM comments where product_id = $id";
+        $return = pdo_query($sql);
+        return $return;
+    }
 ?>

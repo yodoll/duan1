@@ -22,7 +22,7 @@
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($comment as $value) : ?>
+              <?php foreach ($comments as $value) : ?>
                 <tr>
                   <td><?= $value['id'] ?></td>
                   <td><?= $value['name'] ?></td>

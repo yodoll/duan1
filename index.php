@@ -30,9 +30,20 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
                 $sp = loadone_sanpham($_GET['idsp']);
                 $comments = loadall_comments($_GET['idsp']);
+                $total = count_comment($_GET['idsp']);
                 include "./view/detail_product.php";
             } else {
                 include "./view/home.php";
+            }
+            break;
+        case 'comment':
+            if(isset($_POST['submit']) && ($_POST['submit'])){
+                $name = $_SESSION['user']['id'];
+                $content = $_POST['noidung'];
+                $productId = $_POST['idsp'];
+                $date = $_POST['currentDateTime'];
+                insert_comment($content, $productId, $name, $date);
+                header("location: index.php?act=detail&idsp=". $productId);
             }
             break;
         case 'cart':

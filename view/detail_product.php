@@ -29,7 +29,7 @@
                 </div>
                 <small class="pt-1">(50 Reviews)</small>
             </div>
-            <h3 class="font-weight-semi-bold mb-4">Price: $<?= $sp['price'] ?></h3>
+            <h3 class="font-weight-semi-bold mb-4">Giá: <?= number_format($sp['price']) ?>VNĐ</h3>
             <p class="mb-4">
                 🔹 Bảng size Outerity
                 S: Dài 69 Rộng 52.5 | 1m50 - 1m65, 45 - 55Kg
@@ -42,7 +42,7 @@
                 🚫TUYỆT ĐỐI KHÔNG đổ nước giặt, bột giặt trực tiếp vào sản phẩm. Như vậy sẽ ảnh hưởng đến màu sắc của sản phẩm và làm cho áo có tình trạng loang màu. Outerity xin cảm ơn ạ🖤
             </p>
             <div class="d-flex mb-3">
-                <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
+                <p class="text-dark font-weight-medium mb-0 mr-3">Kích cỡ:</p>
                 <form>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" class="custom-control-input" id="size-1" name="size" />
@@ -67,7 +67,7 @@
                 </form>
             </div>
             <div class="d-flex mb-4">
-                <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
+                <p class="text-dark font-weight-medium mb-0 mr-3">Màu:</p>
                 <form>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" class="custom-control-input" id="color-1" name="color" />
@@ -77,18 +77,6 @@
                         <input type="radio" class="custom-control-input" id="color-2" name="color" />
                         <label class="custom-control-label" for="color-2">White</label>
                     </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-3" name="color" />
-                        <label class="custom-control-label" for="color-3">Red</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-4" name="color" />
-                        <label class="custom-control-label" for="color-4">Blue</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-5" name="color" />
-                        <label class="custom-control-label" for="color-5">Green</label>
-                    </div>
                 </form>
             </div>
             <div class="d-flex align-items-center mb-4 pt-2">
@@ -96,7 +84,7 @@
 
                     <form class="d-flex align-items-center" action="index.php?act=addcart" method="post">
                         <label style="width: 160px;" for="">Số lượng:</label>
-                        <input type="number"  class="form-control bg-secondary text-center" min="1" max="50" value="1" required="" name="sl">
+                        <input type="number" class="form-control bg-secondary text-center" min="1" max="50" value="1" required="" name="sl">
                         <input type="hidden" value="<?= $sp['id'] ?>" name="id">
                         <input type="hidden" value="<?= $sp['name'] ?>" name="tensp">
                         <input type="hidden" value="<?= $sp['image'] ?>" name="image">
@@ -107,7 +95,7 @@
                 </div>
             </div>
             <div class="d-flex pt-2">
-                <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
+                <p class="text-dark font-weight-medium mb-0 mr-2">Chia sẻ lên:</p>
                 <div class="d-inline-flex">
                     <a class="text-dark px-2" href="">
                         <i class="fab fa-facebook-f"></i>
@@ -128,12 +116,15 @@
     <div class="row px-xl-5">
         <div class="col">
             <div class="nav nav-tabs justify-content-center border-secondary mb-4">
-                <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+                <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Mô tả</a>
+                <?php 
+                    $arr = $total[0]['COUNT(*)'] ;
+                ?>
+                <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Đánh giá (<?php echo $arr; ?>)</a>
             </div>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="tab-pane-1">
-                    <h4 class="mb-3">Product Description</h4>
+                    <h4 class="mb-3">Mô tả về sản phẩm</h4>
                     <p>
                         🔹 Chính sách đổi trả Outerity. <br>
                         - Miễn phí đổi hàng cho khách mua ở Outerity trong trường hợp bị lỗi từ nhà sản xuất, giao nhầm hàng, nhầm size. <br>
@@ -145,7 +136,8 @@
                 <div class="tab-pane fade" id="tab-pane-3">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="mb-4">1 review for <?= $sp['name'] ?></h4>
+                            <h4 class="mb-4">Tất Cả Bình Luận <?= $sp['name'] ?></h4>
+
                             <?php foreach ($comments as $comment) : ?>
                                 <div class="media mb-4">
                                     <img src="view/img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px" />
@@ -167,37 +159,36 @@
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                        <div class="col-md-6">
-                            <h4 class="mb-4">Leave a review</h4>
-                            <small>Your email address will not be published. Required fields are marked *</small>
-                            <div class="d-flex my-3">
-                                <p class="mb-0 mr-2">Your Rating * :</p>
-                                <div class="text-primary">
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
+                        <?php if (isset($_SESSION['user'])) { ?>
+                            <div class="col-md-6">
+                                <h4 class="mb-4">Bình Luận</h4>
+                                <div class="d-flex my-3">
+                                    <p class="mb-0 mr-2">Đánh giá của bạn * :</p>
+                                    <div class="text-primary">
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
                                 </div>
+                                <form action="index.php?act=comment&idsp=<?= $sp['id'] ?>" method="post">
+                                    <div class="form-group">
+                                        <input type="hidden" name="idsp" value="<?= $sp['id'] ?>">
+                                        <input type="hidden" name="currentDateTime" value="<?= date('Y-m-d H:i:s') ?>">
+                                        <textarea name="noidung" cols="30" rows="5" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <input type="submit" name="submit" value="Leave Your Review" class="btn btn-primary px-3" />
+                                    </div>
+                                </form>
                             </div>
-                            <form>
-                                <div class="form-group">
-                                    <label for="message">Your Review *</label>
-                                    <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Your Name *</label>
-                                    <input type="text" class="form-control" id="name" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Your Email *</label>
-                                    <input type="email" class="form-control" id="email" />
-                                </div>
-                                <div class="form-group mb-0">
-                                    <input type="submit" value="Leave Your Review" class="btn btn-primary px-3" />
-                                </div>
-                            </form>
-                        </div>
+                        <?php } else { ?>
+                            <div class="col-md-6">
+                                Vui lòng đăng nhập để thực hiện bình luận
+                                <a href="/eshopper-shoppingcart/view/auth/login.php">Login</a>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

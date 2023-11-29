@@ -9,6 +9,11 @@
         return $result;
     }
 
+    function insert_comment($content, $productId, $userId, $date){
+        $sql = "INSERT INTO comments (user_id, product_id, content ,created_at) VALUES ('$userId', '$productId', '$content', '$date')";
+        pdo_execute($sql);
+    }
+
     function loadall_binhluan(){
         $sql = "SELECT comments.id, comments.content, comments.created_at, comments.updated_at, products.name as product ,users.name FROM comments
         LEFT JOIN users ON comments.user_id = users.id
@@ -21,4 +26,5 @@
         $sql = "DELETE FROM comments WHERE id = '$id'";
         pdo_execute($sql);
     }
+
 ?>

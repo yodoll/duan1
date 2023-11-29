@@ -153,7 +153,7 @@
                 break;
 
             case 'list-comment':
-                $comment = loadall_binhluan();
+                $comments = loadall_binhluan();
                 include "comment/list.php";
                 break;
             
@@ -162,7 +162,8 @@
                     $id = $_GET['id'];
                     delete_comments($id);
                 }
-                include "./comment/list.php";
+                $comments = loadall_binhluan();
+                include "comment/list.php";
                 break;
 
             case 'list-donhang':
@@ -175,6 +176,7 @@
                     $id = $_GET['id'];
                     delete_donhang($id);
                 }
+                $donhang = loadall_donhang();
                 include "./donhang/list.php";
                 break;
 
