@@ -81,17 +81,43 @@
             </div>
             <div class="d-flex align-items-center mb-4 pt-2">
                 <div class="input-group quantity mr-3" style="width: 260px">
-
                     <form class="d-flex align-items-center" action="index.php?act=addcart" method="post">
-                        <label style="width: 160px;" for="">Số lượng:</label>
-                        <input type="number" class="form-control bg-secondary text-center" min="1" max="50" value="1" required="" name="sl">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-primary" onclick="decrementValue()">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                        <input type="number" class="form-control bg-secondary text-center" min="1" max="50" value="1" required="" name="sl" id="number">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-primary" onclick="incrementValue()">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
                         <input type="hidden" value="<?= $sp['id'] ?>" name="id">
                         <input type="hidden" value="<?= $sp['name'] ?>" name="tensp">
                         <input type="hidden" value="<?= $sp['image'] ?>" name="image">
                         <input type="hidden" value="<?= $sp['price'] ?>" name="gia">
                         <input style="width: 300px; margin-left: 15px;" type="submit" value="Đặt Hàng" name="addtocart" class="btn btn-primary px-3">
                     </form>
+                    <script>
+                        function incrementValue() {
+                            var value = parseInt(document.getElementById('number').value, 10);
+                            value = isNaN(value) ? 0 : value;
+                            value++;
+                            document.getElementById('number').value = parseInt(value);
+                        }
 
+                        function decrementValue() {
+                            var value = parseInt(document.getElementById('number').value, 10);
+                            value = isNaN(value) ? 0 : value;
+
+                            if (value > 0) {
+                                value--;
+                            }
+
+                            document.getElementById('number').value = parseInt(value);
+                        }
+                    </script>
                 </div>
             </div>
             <div class="d-flex pt-2">
@@ -117,8 +143,8 @@
         <div class="col">
             <div class="nav nav-tabs justify-content-center border-secondary mb-4">
                 <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Mô tả</a>
-                <?php 
-                    $arr = $total[0]['COUNT(*)'] ;
+                <?php
+                $arr = $total[0]['COUNT(*)'];
                 ?>
                 <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Đánh giá (<?php echo $arr; ?>)</a>
             </div>

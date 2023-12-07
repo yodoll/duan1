@@ -24,10 +24,10 @@
                 <tr>
                   <td><?= $value['id'] ?></td>
                   <td><?= $value['name'] ?></td>
-                  <td><?= $value['totalMoney'] ?></td>
+                  <td><?= number_format($value['totalMoney']) ?>VNĐ</td>
                   <td><span class="badge bg-success"><?= $value['status'] ?></span></td>
                   <td>
-                    <a href="index.php?act=detail-bill&id=<?= $value['id'] ?>"><button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i>Chi Tiết</button></a>
+                    <a href="index.php?act=bill-details&id=<?= $value['id'] ?>"><button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i>Chi Tiết</button></a>
                     <a onclick="return confirm('bạn chắc chắn muốn xóa?')" href="index.php?act=xoa-donhang&id=<?= $value['id'] ?>"> <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button></a> 
                   </td>
                 </tr>

@@ -20,6 +20,11 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
+  <style>
+      .btn-submit:hover {
+          opacity: 0.7;
+      }
+  </style>
 </head>
 
 <body onload="time()" style="background-color: white;" class="app sidebar-mini rtl">

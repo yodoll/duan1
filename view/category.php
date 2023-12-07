@@ -149,6 +149,10 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
+                <?php if(isset($ketqua)){
+                    echo "<div style='margin-left: 20px; padding: 10px 0'>  $ketqua </div>";
+                    
+                } ?>
                 <div class="col-12 pb-1">
                     <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-center mb-3">

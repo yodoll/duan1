@@ -52,4 +52,14 @@
         $sql = "DELETE FROM products WHERE id = '$id'";
         pdo_execute($sql);
     }
+
+    function search_products($keyw, $iddm){
+        $sql = "SELECT * FROM products WHERE 1";
+        if($keyw!=""){
+            $sql.=" and name like '%".$keyw."%'";
+        }
+        $sql.=" order by id desc";
+        $listsanpham=pdo_query($sql);
+        return  $listsanpham;
+    }
 ?>

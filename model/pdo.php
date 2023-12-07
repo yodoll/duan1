@@ -1,4 +1,10 @@
 <?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$conn = new PDO("mysql:host=$servername;dbname=duan1", $username, $password);
+
 function pdo_get_connection(){
     $servername = "localhost";
     $username = "root";

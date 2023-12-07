@@ -33,8 +33,7 @@
 
     function getUserByUsername($user, $password){
         $sql = "SELECT * FROM users WHERE `userName` = '$user' and `password` = '$password'";
-        $result = pdo_query_one($sql);
-        return $result;
+       return pdo_query_one($sql);
     }
 
     function dangxuat() {

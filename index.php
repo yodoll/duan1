@@ -7,6 +7,7 @@ include "./model/sanpham.php";
 include "./model/comment.php";
 include "./model/danhmuc.php";
 include "./model/taikhoan.php";
+include "./model/donhang.php";
 $category = loadall_category();
 $products = loadall_products();
 $bestSeller = loadall_bestseller();
@@ -19,12 +20,30 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             include "./view/about.php";
             break;
         case 'category':
-            if (isset($_GET['iddm']) && ($_GET['iddm'] > 0)) {
-                $sp_cungloai = loadsp_cungloai($_GET['iddm']);
-                include "./view/category.php";
-            } else {
-                include "./view/home.php";
+            if(isset($_POST['keyword']) && ($_POST['keyword']) != ""){
+                $keyw = $_POST['keyword'];
+            }else {
+                $keyw = "";
             }
+            if (isset($_GET['iddm']) && ($_GET['iddm'] > 0)) {
+                $iddm = $_GET['iddm'];
+            } else {
+               $iddm = 0;
+            }
+            search_products($keyw, $iddm);
+            $sp_cungloai = loadsp_cungloai($iddm);
+            if (!empty($keyw)) {
+                // Nếu có từ khóa tìm kiếm, thực hiện tìm kiếm và cập nhật danh sách sản phẩm
+                $sp_cungloai = search_products($keyw, $iddm);
+                if(empty(trim($keyw))){
+                    $ketqua = "Không tìm thầy sản phẩm!";
+                }
+            }
+            include "./view/category.php";
+            break;
+        
+        case 'search':
+           
             break;
         case 'detail':
             if (isset($_GET['idsp']) && $_GET['idsp'] > 0) {
@@ -80,7 +99,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 header("location: index.php?act=cart");
             }
             break;
-
+        
         case 'deleteCart':
             if(isset($_GET['i']) && ($_GET['i']) > 0){
                 if(isset($_SESSION['giohang'])){
@@ -112,8 +131,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     exit();
                 } else {
                     // Băm mật khẩu trước khi lưu vào cơ sở dữ liệu
-                    $hashed = password_hash($password, PASSWORD_DEFAULT);
-                    insert_taikhoan($username, $phone, $address, $email, $hashed);
+                    // $hash = password_hash($password, PASSWORD_DEFAULT);
+                    insert_taikhoan($username, $phone, $address, $email, $password);
                     header("location: index.php");
                 }
             }
@@ -149,6 +168,76 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
 
         case 'checkout':
             include "./view/checkout.php";
+            break;
+        
+        case 'thanhtoan':
+            if(isset($_POST['submit']) && ($_POST['submit'])){
+                // lấy dữ liệu
+                $user_id = $_SESSION['user']['id'];
+                $product_id = $_POST['prdId'];
+                $totalMoney = $_POST['totalMoney'];
+                $payment = $_POST['payment'];
+                $amount = $_POST['sl'];
+                $date = $_POST['currentDateTime'];
+                //chèn dữ liệu
+                $lastOrder= insert_donhang($user_id, $totalMoney, $payment, $date);
+                
+                $orderId = $lastOrder['id'];
+                    for ($i = 0; $i < count($_SESSION['giohang']); $i++) {
+                        $product_id = $_POST['prdId'][$i];
+                        $amount = $_POST['sl'][$i];
+                        insert_order_details($orderId, $product_id,  $amount);
+                    }
+           
+                header("location: index.php?act=purchase");
+                unset($_SESSION['giohang']);
+                exit();
+            }
+            include "./view/checkout.php";
+            break;
+        
+        case 'purchase':
+            if(isset($_POST['huy-prd'])){
+                update_order_by_id($_POST['order_id']);
+                header('location: index.php?act=purchase');
+            }
+            $orders = loadall_order($_SESSION['user']['id']);
+            $results = [];
+
+    foreach ($orders as $key => $value) {
+        $keyI = array_search($value['orderId'], array_column($results, 'orderId'));
+        extract($value);
+        if ($keyI === false) {
+            $order = array(
+                'orderId' => $orderId,
+                'status' => $status,
+                'totalMoney' => $totalMoney,
+                'created_at' => $created_at,
+                'updated_at' => $updated_at,
+                'products' => array(
+                    [
+                        "prdId" => $prdId,
+                        'name' => $name,
+                        'image' => $image,
+                        'price' => $price,
+                        'amount' => $amount
+                    ],
+                ),
+            );
+            array_push($results, $order);
+        } else {
+            array_push($results[$keyI]['products'], array(
+
+                "prdId" => $prdId,
+                'name' => $name,
+                'image' => $image,
+                'price' => $price,
+                'amount' => $amount
+
+            ));
+        }
+    }
+            include "./view/purchase.php";
             break;
     }
 } else {

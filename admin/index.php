@@ -180,6 +180,22 @@
                 include "./donhang/list.php";
                 break;
 
+            case 'bill-details':
+                // Hiển thị
+                if(isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    $getOrderDetails = loadall_order_details($id);
+                    if(isset($_POST['submit'])){
+                        $id = $_POST['id'];
+                        $orderStatus = $_POST['order_status'];
+                        updateStatus($id, $orderStatus);
+                        $thongbao = "cập nhật thành công!";
+                    }
+                }
+               
+                include './donhang/ctdonhang.php';
+                break;
+
             case 'list-thongke':
                 include "thongke/thong-ke.php";
                 break;

@@ -75,6 +75,53 @@
             color: #d19c97;
             cursor: default;
         }
+
+        .bill_history {
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        .bill_history h2 {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .bill_history span:hover a {
+            color: #ccc;
+        }
+
+        .all_bill {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .all_bill-products {
+            border: 1px solid #000;
+            padding: 0px 15px;
+        }
+
+        .products_bill {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding-top: 20px;
+        }
+
+        .products_bill-1 {
+            display: flex;
+        }
+
+        .all_bill .button-submit {
+            background-color: #ef4444;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .all_bill .button-submit:hover{
+            opacity: 0.7;
+        }
     </style>
 </head>
 
@@ -118,13 +165,13 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm ...">
+                <form action="index.php?act=category" method="post">
+                    <div class="input-group ">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm ..." name="keyword">
                         <div style="cursor: pointer;" class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
+                            <button type="submit" class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
-                            </span>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -200,7 +247,7 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
                                     <a href="index.php?act=cart" class="dropdown-item">Shopping Cart</a>
-                                    <a href="index.php?act=checkout" class="dropdown-item">Checkout</a>
+                                    <a href="<?php echo isset($_SESSION['user']) ? "index.php?act=checkout" : "./view/auth/login.php"; ?>" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
                             <a href="index.php?act=contact" class="nav-item nav-link">Contact</a>
@@ -216,6 +263,7 @@
                                             <?php if ($_SESSION['user']['is_Admin'] == 1) { ?>
                                                 <li><a style="text-decoration: none;" href="/eshopper-shoppingcart/admin/index.php">Vào trang quản trị</a></li>
                                             <?php } ?>
+                                            <li><a style="text-decoration: none;" href="index.php?act=purchase&id=<?= $_SESSION['user']['id'] ?>">Đơn hàng</a></li>
                                             <li><a style="text-decoration: none;" href="index.php?act=dangxuat">Đăng xuất</a></li>
                                         </ul>
                                     </li>

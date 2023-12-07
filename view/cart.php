@@ -16,25 +16,25 @@
                  <tbody class="align-middle">
                      <?php
                         $i = 0;
-                        $tong=0;
+                        $tong = 0;
                         if (isset($_SESSION['giohang']) && sizeof($_SESSION['giohang']) > 0) {
                             foreach ($_SESSION['giohang'] as $value) {
                                 $total = floatval($value['3']) * floatval($value['4']);
                                 $tong += $total;
                                 echo '<tr>
-                                    <td class="align-middle">'. ($i + 1) .'</td>
+                                    <td class="align-middle">' . ($i + 1) . '</td>
                                     <td class="align-middle">
                                         <img src="view/img/' . $value['2'] . '" alt="" style="width: 50px" />' . $value['1'] . '
                                     </td>
-                                    <td class="align-middle">' . number_format($value['3']). 'VNĐ</td>
-                                    <td class="align-middle">
+                                    <td class="align-middle">' . number_format($value['3']) . 'VNĐ</td>
+                                    <td class="align-middle">                           
                                         <div class="input-group quantity mx-auto" style="width: 100px">
-                                            <input type="text" class="form-control form-control-sm bg-secondary text-center" value="' . $value['4'] . '" />
+                                            <input id="number" type="text" class="form-control form-control-sm bg-secondary text-center" value="' . $value['4'] . '" />
                                         </div>
                                     </td>
-                                    <td class="align-middle">' . number_format($total). 'VNĐ</td>
+                                    <td class="align-middle">' . number_format($total) . 'VNĐ</td>
                                     <td class="align-middle">
-                                        <button class="btn btn-sm btn-primary"><a style="color: white; text-decoration: none;" href="index.php?act=deleteCart&i='. $i .'">Xóa</a></button>
+                                        <button class="btn btn-sm btn-primary"><a style="color: white; text-decoration: none;" href="index.php?act=deleteCart&i=' . $i . '">Xóa</a></button>
                                     </td>
                                 </tr>';
                                 $i++;
@@ -45,7 +45,6 @@
              </table>
          </div>
          <div class="col-lg-4">
-            
              <div class="card border-secondary mb-5">
                  <div class="card-header bg-secondary border-0">
                      <h4 class="font-weight-semi-bold m-0">Giỏ hàng</h4>
@@ -63,9 +62,9 @@
                  <div class="card-footer border-secondary bg-transparent">
                      <div class="d-flex justify-content-between mt-2">
                          <h5 class="font-weight-bold">Tổng</h5>
-                         <h5 class="font-weight-bold"><?= number_format($tong+10) ?> VNĐ</h5>
+                         <h5 class="font-weight-bold"><?= number_format($tong + 10) ?> VNĐ</h5>
                      </div>
-                     <a style="text-decoration: none;" href=""><button class="btn btn-block btn-primary my-3 py-3">Thanh Toán</button></a>
+                     <a style="text-decoration: none;" href="<?php echo isset($_SESSION['user']) ? "index.php?act=checkout" : "./view/auth/login.php"; ?>"><button class="btn btn-block btn-primary my-3 py-3">Thanh Toán</button></a>
                  </div>
              </div>
          </div>
