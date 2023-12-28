@@ -11,6 +11,7 @@ include "./model/donhang.php";
 $category = loadall_category();
 $products = loadall_products();
 $bestSeller = loadall_bestseller();
+
 include "./view/header.php";
 if (!isset($_SESSION['giohang'])) $_SESSION['giohang'] = [];
 if (isset($_GET['act']) && $_GET['act'] != "") {
@@ -30,7 +31,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             } else {
                $iddm = 0;
             }
-            search_products($keyw, $iddm);
+            $search=search_products($keyw, $iddm);
             $sp_cungloai = loadsp_cungloai($iddm);
             if (!empty($keyw)) {
                 // Nếu có từ khóa tìm kiếm, thực hiện tìm kiếm và cập nhật danh sách sản phẩm
@@ -39,10 +40,17 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $ketqua = "Không tìm thầy sản phẩm!";
                 }
             }
+            $getId = $iddm;
+            $getName = $keyw;
+            if(isset($_POST['submit'])){
+                $iddm = $_POST['iddm'];
+                $start = ($_POST['start']);
+                $end = ($_POST['end']);
+                $sp_cungloai = filter_category($iddm ,$start, $end);
+            }
             include "./view/category.php";
             break;
         
-        case 'search':
            
             break;
         case 'detail':
@@ -115,6 +123,25 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             break;
 
+        case 'updateCart':
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['act']) && $_GET['act'] === 'updateCart') {
+                $i = $_GET['i'];
+                $quantity = $_POST['quantity'];
+            
+                if (isset($_POST['increment'])) {
+                    // Tăng số lượng
+                    $_SESSION['giohang'][$i]['4']++;
+                } elseif (isset($_POST['decrement'])) {
+                    // Giảm số lượng, nhưng đảm bảo không dưới 1
+                    $_SESSION['giohang'][$i]['4'] = max(1, $_SESSION['giohang'][$i]['4'] - 1);
+                }
+            
+                // Redirect về trang giỏ hàng
+                header('Location: index.php?act=cart');
+                exit();
+            }
+            break;
+
         case 'dangky':
             if (isset($_POST['dangky'])) {
                 $username = $_POST['username'];
@@ -127,13 +154,13 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $emailExists = get_user_by_name($_POST['email']);
 
                 if ($emailExists) {
-                    header("location: index.php?login&error=Tài khoản đã tồn tại!");
+                    header("location: ./view/auth/register.php?register&error=Tài khoản đã tồn tại!");
                     exit();
                 } else {
                     // Băm mật khẩu trước khi lưu vào cơ sở dữ liệu
                     // $hash = password_hash($password, PASSWORD_DEFAULT);
                     insert_taikhoan($username, $phone, $address, $email, $password);
-                    header("location: index.php");
+                    header("location: ./view/auth/login.php?message=Đăng ký thành công!");
                 }
             }
             include "./view/home.php";
@@ -146,15 +173,18 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $emailExists = get_user_by_name($_POST['user']);
 
                 if (!$emailExists) {
-                    header("location: index.php?login&error=Tài khoản không tồn tại!");
+                    header("location: ./view/auth/login.php?login&error=Tài khoản không tồn tại!");
                     exit();
                 }
                 $userDb = getUserByUsername($user, $password);
                 if (is_array($userDb)) {
                     $_SESSION['user'] = $userDb;
                     header("location: index.php");
+                    if($_SESSION['user']['is_Admin'] == 1){
+                        header("location: ./admin/index.php");
+                    }
                 } else {
-                    header("location: index.php?error= Tài khoản hoặc mật khẩu không đúng!");
+                    header("location: ./view/auth/login.php?error2= Tài khoản hoặc mật khẩu không đúng!");
                 }
             }
             include "./view/home.php";
@@ -186,8 +216,11 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     for ($i = 0; $i < count($_SESSION['giohang']); $i++) {
                         $product_id = $_POST['prdId'][$i];
                         $amount = $_POST['sl'][$i];
+                        $currentQuantity = intval($amount);
                         insert_order_details($orderId, $product_id,  $amount);
+                        update_product_quantity($product_id, $currentQuantity);
                     }
+
            
                 header("location: index.php?act=purchase");
                 unset($_SESSION['giohang']);

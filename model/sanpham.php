@@ -58,8 +58,23 @@
         if($keyw!=""){
             $sql.=" and name like '%".$keyw."%'";
         }
+        if($iddm>0){
+            $sql.=" and id ='".$iddm."'";
+        }
         $sql.=" order by id desc";
         $listsanpham=pdo_query($sql);
         return  $listsanpham;
     }
+    function filter_category($iddm ,$start, $end){
+        $sql = "SELECT id, name, image, price, quantity_sold FROM products WHERE  groupProduct_Id = '$iddm' AND price <= '$end' AND price >= '$start'";
+        $result = pdo_query($sql);
+        return $result;
+    }
+
+    function  update_product_quantity($product_id, $newQuantity){
+        $sql = "UPDATE products SET quantity_sold = quantity_sold + '$newQuantity'  ,amount = amount - '$newQuantity' WHERE id = '$product_id'";
+        $result = pdo_query($sql);
+        return $result;
+    }
+    
 ?>

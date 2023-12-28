@@ -20,9 +20,16 @@
                <input type="password" name="password" required>
                <label>Password</label>
             </div>
-            <?php if(isset($thongbao1)&&$thongbao1!="" ){
-                echo $thongbao1;
-            } ?>
+            <div style="padding: 10px 10px;">
+            <?php if(isset($_GET['error2'])){
+                  echo "Tài khoản hoặc mật khẩu sai!";
+               } ?>
+            </div>
+            <div style="padding-left: 10px;">
+            <?php if(isset($_GET['error'])){
+                  echo "Tài khoản không tồn tại!";
+               } ?>
+            </div>
             <div class="content">
                <div class="checkbox">
                   <input type="checkbox" id="remember-me">

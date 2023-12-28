@@ -95,7 +95,7 @@
                              </div>
                          </div>
                          <div class="card-footer border-secondary bg-transparent">
-                            <input type="submit" value="Thanh Toán" name="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">
+                            <input onclick="alert('Đặt hàng thành công!')" type="submit" value="Thanh Toán" name="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">
                          </div>
                  </form>
              </div>

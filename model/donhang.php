@@ -50,6 +50,14 @@ function loadall_order_details($id){
     return $result;
 }
 
+function getOneOrderDetails($id){
+    $sql = "SELECT prd.id AS prdId, prd.name, prd.image, prd.price, odt.amount, od.id AS orderId, od.status, od.totalMoney, od.created_at, od.updated_at
+    FROM products prd JOIN order_details odt ON prd.id = odt.product_id
+    JOIN orders od ON od.id = odt.order_id WHERE od.id = '$id'";
+    $result = pdo_query_one($sql);
+    return $result;
+}
+
 function updateStatus($id, $orderStatus){
     $sql = "UPDATE orders SET status = '$orderStatus' WHERE id = $id";
     pdo_execute($sql);

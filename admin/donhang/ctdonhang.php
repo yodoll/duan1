@@ -1,7 +1,5 @@
 
-<?php if (count($getOrderDetails) == 0) { ?>
-    <div style="padding-left: 15px; position: absolute; top: 20%; left: 40%; font-size: 20px;">Đơn hàng đã bị hủy hoặc chưa có sản phẩm!<span style="cursor: pointer; padding: 5px 10px; background-color: #ef4444; color: #fff; border-radius: 5px; margin-left: 5px;"><a style="text-decoration: none; color:#fff" href="index.php?act=list-donhang">Quay lại</a></span></div>'
-<?php } else { ?>
+
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb side">
@@ -13,22 +11,25 @@
             <div class="col-md-12">
                 <div class="tile">
                     <div class="tile-body">
-                        <div style="padding: 10px 0;">
-                            <h3>Cập nhật trạng thái</h3>
-                            <form action="" method="post">
-                                <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
-                                <select name="order_status" id="">
-                                    <option value="đã hủy">Đã hủy đơn</option>
-                                    <option value="đang xử lý">Đang xử lý</option>
-                                    <option value="đang giao hàng">Đang giao hàng</option>
-                                    <option value="giao thành công">Giao thành công</option>
-                                </select>
-                                <button class="btn-submit" style="background-color: #ef4444; color: #fff; border: none; border-radius: 3px; padding: 5px; margin-left: 10px; cursor: pointer;" name="submit" type="submit">Cập nhật</button>
-                            </form>
-                            <?php if (isset($thongbao)) {
-                                echo $thongbao;
-                            } ?>
-                        </div>
+                        <?php if(strtolower($getOneOrderDetails['status']) == 'đã hủy' || strtolower($getOneOrderDetails['status']) == 'giao thành công'){ ?>
+                            <div>.....</div>
+                        <?php }else { ?>
+                            <div style="padding: 10px 0;">
+                                <h3>Cập nhật trạng thái</h3>
+                                <form action="" method="post">
+                                    <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+                                    <select name="order_status" id="">
+                                        <option value="đang xử lý">Đang xử lý</option>
+                                        <option value="đang giao hàng">Đang giao hàng</option>
+                                        <option value="giao thành công">Giao thành công</option>
+                                    </select>
+                                    <button class="btn-submit" style="background-color: #ef4444; color: #fff; border: none; border-radius: 3px; padding: 5px; margin-left: 10px; cursor: pointer;" name="submit" type="submit">Cập nhật</button>
+                                </form>
+                                <?php if (isset($thongbao)) {
+                                    echo $thongbao;
+                                } ?>
+                            </div>
+                        <?php } ?>
                         <div style="padding: 15px 0;">
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
@@ -64,4 +65,3 @@
             </div>
         </div>
     </main>
-<?php } ?>

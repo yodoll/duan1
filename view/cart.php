@@ -27,10 +27,18 @@
                                         <img src="view/img/' . $value['2'] . '" alt="" style="width: 50px" />' . $value['1'] . '
                                     </td>
                                     <td class="align-middle">' . number_format($value['3']) . 'VNĐ</td>
-                                    <td class="align-middle">                           
-                                        <div class="input-group quantity mx-auto" style="width: 100px">
-                                            <input id="number" type="text" class="form-control form-control-sm bg-secondary text-center" value="' . $value['4'] . '" />
-                                        </div>
+                                    <td class="align-middle">    
+                                        <form method="post" action="index.php?act=updateCart&i=' . $i . '">
+                                            <div class="input-group quantity mx-auto" style="width: 200px; ">
+                                                <button style="height: 32px; display: flex; align-items: center" type="submit" class="btn btn-primary" name="decrement">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                <input name="quantity" type="text" class="form-control form-control-sm bg-secondary text-center" value="' . $value['4'] . '" />
+                                                <button style="height: 32px; display: flex; align-items: center" type="submit" class="btn btn-primary" name="increment">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </form>
                                     </td>
                                     <td class="align-middle">' . number_format($total) . 'VNĐ</td>
                                     <td class="align-middle">

@@ -37,3 +37,6 @@ function update_danhmuc($id, $tenloai, $image)
     $sql = "update groupproduct set name='$tenloai', image='$image' where id='$id'";
     pdo_execute($sql);
 }
+
+
+?>
